@@ -6,12 +6,15 @@
 
 This repository contains open source code for the Catalyst Center Open Source MCP Server. 
 Each version of Catalyst Center <M.N.P.Q> will have an accompanying branch within this 
-repository (release/catc-<M.N.P.Q>) containing the corresponding MCP Server.  
+repository (release/<M.N.P.Q>) containing the corresponding MCP Server.
 
-Each MCP server exposes as tools many of the functions exposed as read apis exposed by 
-the Catalyst Center.   The context for each tool incorporates the documentation of the 
-api endpoint as well as, in some cases, additional context that Cisco believes improves 
-the usability of the tool by AI Agents.  
+Each MCP server exposes as tools many of the functions exposed as read apis exposed by
+the Catalyst Center.   The context for each tool incorporates the documentation of the
+api endpoint as well as, in some cases, additional context that Cisco believes improves
+the usability of the tool by AI Agents.
+
+Important: The `main` branch of this repository does not include any MCP server code.  
+Please reference the appropriate release branch based on your Catalyst Center version.    
 
 ## Getting Started
 
@@ -20,7 +23,7 @@ To get a local copy up and running follow these simple steps.
 ### Prerequisites
 
 - Docker Build and Runtime Environment (Recommended)
-- Python 3.12 or above (Optional if Docker is not available)
+- Python - see [pyproject.toml](pyproject.toml) (Optional if Docker is not available)
 
 ### Installation
 
@@ -42,6 +45,12 @@ export CATALYST_CENTER_USERNAME=admin
 export CATALYST_CENTER_PASSWORD='...'
 export CATALYST_CENTER_VERIFY_SSL=false
 ```
+
+Note: Setting CATALYST_CENTER_VERIFY_SSL to false is not a recommended practice.
+We recommend ensuring that the docker build is modified to allow trust store
+maintenance and mangement over time to allow the use of trusted certificates.
+If using any certificate that is not part of a trusted chain, often the case with
+self-signed certificates, this must be set to false.
 
 ### Docker Execution (Recommended)
 
@@ -125,7 +134,7 @@ Please see [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## License
 
-Distributed under the Apache License. See [LICENSE](LICENSE) for more
+Distributed under the Apache License. See [LICENSE.md](LICENSE.md) for more
 information.
 
 ## Contact
