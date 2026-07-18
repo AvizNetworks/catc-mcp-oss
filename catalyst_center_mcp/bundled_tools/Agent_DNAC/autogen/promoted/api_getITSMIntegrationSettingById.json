@@ -1,0 +1,106 @@
+{
+  "function": {
+    "_meta": {
+      "agents": [
+        "catalyst_network_engineer_agent"
+      ]
+    },
+    "additionalMetadata": {
+      "method": "GET",
+      "parameterLocation": {
+        "instanceId": "path"
+      },
+      "uri": "/dna/intent/api/v1/integration-settings/instances/itsm/{instanceId}",
+      "version": "2.3.7.9"
+    },
+    "description": "Fetches ITSM Integration setting by ID",
+    "name": "api_getITSMIntegrationSettingById",
+    "parameters": {
+      "properties": {
+        "instanceId": {
+          "description": "Instance Id of the Integration setting instance",
+          "type": "string"
+        }
+      },
+      "required": [
+        "instanceId"
+      ],
+      "type": "object"
+    },
+    "responses": {
+      "description": "",
+      "properties": {
+        "_id": {
+          "description": "",
+          "type": "string"
+        },
+        "data": {
+          "description": "",
+          "properties": {
+            "ConnectionSettings": {
+              "description": "",
+              "properties": {
+                "Auth_Password": {
+                  "description": "",
+                  "type": "string"
+                },
+                "Auth_UserName": {
+                  "description": "",
+                  "type": "string"
+                },
+                "Url": {
+                  "description": "",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "description": {
+          "description": "",
+          "type": "string"
+        },
+        "dypId": {
+          "description": "",
+          "type": "string"
+        },
+        "dypMajorVersion": {
+          "description": "",
+          "type": "integer"
+        },
+        "dypName": {
+          "description": "",
+          "type": "string"
+        },
+        "id": {
+          "description": "",
+          "type": "string"
+        },
+        "name": {
+          "description": "",
+          "type": "string"
+        },
+        "tenantId": {
+          "description": "",
+          "type": "string"
+        },
+        "uniqueKey": {
+          "description": "",
+          "type": "string"
+        },
+        "updatedBy": {
+          "description": "",
+          "type": "string"
+        },
+        "updatedDate": {
+          "description": "",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "function"
+}

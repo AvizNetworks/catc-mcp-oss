@@ -1,0 +1,103 @@
+{
+  "function": {
+    "_meta": {
+      "agents": [
+        "catalyst_network_engineer_agent"
+      ]
+    },
+    "additionalMetadata": {
+      "method": "GET",
+      "parameterLocation": {
+        "id": "path",
+        "order": "query"
+      },
+      "uri": "/dna/intent/api/v1/securityServiceInsertion/fabricSitesReadiness/{id}",
+      "version": "2.3.7.9"
+    },
+    "description": "Gets a list of SDA virtual networks for the specified fabric site, including their individual readiness status for Security Service Insertion (SSI) deployment. The result is sorted by virtualNetworkName.",
+    "name": "api_readinessStatusForAFabricSite",
+    "parameters": {
+      "properties": {
+        "id": {
+          "description": "Sda fabric site id.",
+          "type": "string"
+        },
+        "order": {
+          "description": "Whether ascending or descending order should be used to sort the response.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "responses": {
+      "description": "",
+      "properties": {
+        "response": {
+          "description": "List of SDA virtual networks.",
+          "items": {
+            "properties": {
+              "anyCastGateway": {
+                "description": "The Anycast gateway associated with the virtual network.",
+                "type": "integer"
+              },
+              "deviceCounts": {
+                "description": "",
+                "properties": {
+                  "readyDeviceCount": {
+                    "description": "The number of ready devices in the virtual network.",
+                    "type": "integer"
+                  },
+                  "totalDeviceCount": {
+                    "description": "The total number of devices in the virtual network.",
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "extranetPolicyCounterParts": {
+                "description": "List of virtual network names that have corresponding extranet policies.",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "extranetRole": {
+                "description": "",
+                "enum": [
+                  "PROVIDER, SUBSCRIBER, NONE"
+                ],
+                "type": "string"
+              },
+              "id": {
+                "description": "The unique identifier of the virtual network.",
+                "type": "string"
+              },
+              "layer3VirtualNetworkId": {
+                "description": "The Layer 3 virtual network ID.",
+                "type": "integer"
+              },
+              "readiness": {
+                "description": "The readiness status of the virtual network.",
+                "enum": [
+                  "READY, NOT_READY"
+                ],
+                "type": "string"
+              },
+              "virtualNetworkName": {
+                "description": "The name of the virtual network.",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "function"
+}

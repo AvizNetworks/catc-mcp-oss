@@ -1,0 +1,663 @@
+{
+  "function": {
+    "_meta": {
+      "agents": [
+        "catalyst_network_engineer_agent"
+      ]
+    },
+    "additionalMetadata": {
+      "method": "GET",
+      "parameterLocation": {
+        "X-CALLER-ID": "header",
+        "attribute": "query",
+        "band": "query",
+        "connectedNetworkDeviceName": "query",
+        "endTime": "query",
+        "ipv4Address": "query",
+        "ipv6Address": "query",
+        "limit": "query",
+        "macAddress": "query",
+        "offset": "query",
+        "order": "query",
+        "osType": "query",
+        "osVersion": "query",
+        "siteHierarchy": "query",
+        "siteHierarchyId": "query",
+        "siteId": "query",
+        "sortBy": "query",
+        "ssid": "query",
+        "startTime": "query",
+        "type": "query",
+        "view": "query",
+        "wlcName": "query"
+      },
+      "uri": "/dna/data/api/v1/clients",
+      "version": "2.3.7.9"
+    },
+    "description": "Retrieves the list of clients, while also offering basic filtering and sorting capabilities. For detailed information about the usage of the API, please refer to the Open API specification document - https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-clients1-1.0.0-resolved.yaml",
+    "name": "api_retrievesTheListOfClients_WhileAlsoOfferingBasicFil_820210a0",
+    "parameters": {
+      "properties": {
+        "X-CALLER-ID": {
+          "description": "Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.\n",
+          "type": "string"
+        },
+        "attribute": {
+          "description": "List of attributes related to resource that can be requested to only be part of the response along with the required attributes. Refer to ClientAttribute schema for list of attributes supported Examples:\n`attribute=band` (single attribute requested)\n`attribute=band&attribute=ssid&attribute=overallScore` (multiple attribute requested)",
+          "type": "string"
+        },
+        "band": {
+          "description": "WiFi frequency band that client or Access Point operates. Band value is represented in Giga Hertz - GHz\nExamples:\n\n`band=5GHZ` (single band requested)\n\n`band=2.4GHZ&band=6GHZ` (multiple band requested)\n",
+          "type": "string"
+        },
+        "connectedNetworkDeviceName": {
+          "description": "Name of the neighbor network device that client is connected to.\nThis field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.\nEx: `*ap-25*` or `ap-25*` or `*ap-25`\n\nExamples:\n\n`connectedNetworkDeviceName=ap-25` (single connectedNetworkDeviceName requested)\n\n`connectedNetworkDeviceName=ap-25&ap-34` (multiple connectedNetworkDeviceName requested)    \n",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.\n",
+          "type": "number"
+        },
+        "ipv4Address": {
+          "description": "IPv4 Address of the network entity either network device or client\nThis field supports wildcard (`*`) character-based search. \nEx: `*1.1*` or `1.1*` or `*1.1`\n\nExamples:\n\n`ipv4Address=1.1.1.1` (single ipv4Address requested)\n\n`ipv4Address=1.1.1.1&ipv4Address=2.2.2.2` (multiple ipv4Address requested)\n",
+          "type": "string"
+        },
+        "ipv6Address": {
+          "description": "IPv6 Address of the network entity either network device or client\nThis field supports wildcard (`*`) character-based search.\nEx: `*2001:db8*` or `2001:db8*` or `*2001:db8`\n\nExamples:\n\n`ipv6Address=2001:db8:0:0:0:0:2:1` (single ipv6Address requested)\n\n`ipv6Address=2001:db8:0:0:0:0:2:1&ipv6Address=2001:db8:85a3:8d3:1319:8a2e:370:7348` (multiple ipv6Address requested)\n",
+          "type": "string"
+        },
+        "limit": {
+          "description": "Maximum number of records to be fetched. If not provided, 500 records will be fetched by default",
+          "maximum": 500,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "macAddress": {
+          "description": "The macAddress of the network device or client\nThis field supports wildcard (`*`) character-based search. \nEx: `*AB:AB:AB*` or `AB:AB:AB*` or `*AB:AB:AB`\nExamples:\n\n`macAddress=AB:AB:AB:CD:CD:CD` (single macAddress requested)\n\n`macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE` (multiple macAddress requested)\n",
+          "type": "string"
+        },
+        "offset": {
+          "description": "The first record to show for this page. Minimum value is 1",
+          "minimum": 1,
+          "type": "integer"
+        },
+        "order": {
+          "description": "The sort order of the field ascending or descending.",
+          "type": "string"
+        },
+        "osType": {
+          "description": "Client device operating system type.\nThis field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search. \nEx: `*iOS*` or `iOS*` or `*iOS`\nExamples:\n\n`osType=iOS` (single osType requested)\n\n`osType=iOS&osType=Android` (multiple osType requested)\n",
+          "type": "string"
+        },
+        "osVersion": {
+          "description": "Client device operating system version\nThis field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search. \nEx: `*14.3*` or `14.3*` or `*14.3`\nExamples:\n\n`osVersion=14.3` (single osVersion requested)\n\n`osVersion=14.3&osVersion=10.1` (multiple osVersion requested)\n",
+          "type": "string"
+        },
+        "siteHierarchy": {
+          "description": "The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named \"Global\" (Ex. \"Global/AreaName/BuildingName/FloorName\") This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.  Ex: `*BuildingName*` or `BuildingName*` or `*BuildingName`\nExamples:\n`siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested)\n`siteHierarchy=Global/AreaName/BuildingName1/FloorName1&siteHierarchy=Global/AreaName/BuildingName1/FloorName2` (multiple siteHierarchy requested)",
+          "type": "string"
+        },
+        "siteHierarchyId": {
+          "description": "The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. \"globalUuid/areaUuid/buildingUuid/floorUuid\") This field supports wildcard (`*`) character-based search.  Ex: `*buildingUuid*` or `buildingUuid*` or `*buildingUuid`\nExamples:\n`siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid` (single siteHierarchyId requested)\n`siteHierarchyId=globalUuid/areaUuid/buildingUuid1/floorUuid1&siteHierarchyId=globalUuid/areaUuid/buildingUuid1/floorUuid2` (multiple siteHierarchyId requested)",
+          "type": "string"
+        },
+        "siteId": {
+          "description": "The site UUID without the top level hierarchy. (Ex.\"floorUuid\") Examples:\n`siteId=floorUuid` (single siteId requested)\n`siteId=floorUuid1&siteId=floorUuid2` (multiple siteId requested)",
+          "type": "string"
+        },
+        "sortBy": {
+          "description": "A field within the response to sort by.",
+          "type": "string"
+        },
+        "ssid": {
+          "description": "SSID is the name of wireless network to which client connects to. It is also referred to as WLAN ID - Wireless Local Area Network Identifier.\nThis field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search. \nEx: `*Alpha*` or `Alpha*` or `*Alpha`\n\nExamples:\n\n`ssid=Alpha` (single ssid requested)\n\n`ssid=Alpha&ssid=Guest` (multiple ssid requested)\n",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.\n\nIf `startTime` is not provided, API will default to current time.\n",
+          "type": "number"
+        },
+        "type": {
+          "description": "The client device type whether client is connected to network through Wired or Wireless medium.\n",
+          "type": "string"
+        },
+        "view": {
+          "description": "Client related Views\nRefer to ClientView schema for list of views supported\nExamples:\n\n`view=Wireless` (single view requested)\n\n`view=WirelessHealth&view=WirelessTraffic` (multiple view requested)\n",
+          "type": "string"
+        },
+        "wlcName": {
+          "description": "Wireless Controller name that reports the wireless client.\nThis field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.\nEx: `*wlc-25*` or `wlc-25*` or `*wlc-25`\n\nExamples:\n\n`wlcName=wlc-25` (single wlcName requested)\n\n`wlcName=wlc-25&wlc-34` (multiple wlcName requested)\n",
+          "type": "string"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "responses": {
+      "description": "",
+      "properties": {
+        "page": {
+          "description": "",
+          "properties": {
+            "count": {
+              "description": "",
+              "type": "integer"
+            },
+            "limit": {
+              "description": "",
+              "type": "integer"
+            },
+            "offset": {
+              "description": "",
+              "type": "integer"
+            },
+            "sortBy": {
+              "description": "",
+              "items": {
+                "properties": {
+                  "name": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "order": {
+                    "description": "",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "response": {
+          "description": "",
+          "items": {
+            "properties": {
+              "connectedNetworkDevice": {
+                "description": "",
+                "properties": {
+                  "connectedNetworkDeviceId": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "connectedNetworkDeviceMac": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "connectedNetworkDeviceManagementIp": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "connectedNetworkDeviceName": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "connectedNetworkDeviceType": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "duplexMode": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "interfaceName": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "interfaceSpeed": {
+                    "description": "",
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "connection": {
+                "description": "",
+                "properties": {
+                  "apEthernetMac": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "apMac": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "apMode": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "authType": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "band": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "bridgeVMMode": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "channel": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "channelWidth": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "dataRate": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "isIosAnalyticsCapable": {
+                    "description": "",
+                    "type": "boolean"
+                  },
+                  "l2Vn": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "l3Vn": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "linkSpeed": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "protocol": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "protocolCapability": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "radioId": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "rssi": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "securityGroupTag": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "sessionDuration": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "snr": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "ssid": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "upnDuid": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "upnId": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "upnName": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "upnOwner": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "vlanId": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "vnId": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "wlcId": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "wlcName": {
+                    "description": "",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "connectionStatus": {
+                "description": "",
+                "type": "string"
+              },
+              "formFactor": {
+                "description": "",
+                "type": "string"
+              },
+              "health": {
+                "description": "",
+                "properties": {
+                  "connectedScore": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "isLinkErrorIncluded": {
+                    "description": "",
+                    "type": "boolean"
+                  },
+                  "isRssiIncluded": {
+                    "description": "",
+                    "type": "boolean"
+                  },
+                  "isSnrIncluded": {
+                    "description": "",
+                    "type": "boolean"
+                  },
+                  "linkErrorPercentageThreshold": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "onboardingScore": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "overallScore": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "rssiThreshold": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "snrThreshold": {
+                    "description": "",
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "id": {
+                "description": "",
+                "type": "string"
+              },
+              "ipv4Address": {
+                "description": "",
+                "type": "string"
+              },
+              "ipv6Addresses": {
+                "description": "",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "isPrivateMacAddress": {
+                "description": "",
+                "type": "boolean"
+              },
+              "lastUpdatedTime": {
+                "description": "",
+                "type": "integer"
+              },
+              "latency": {
+                "description": "",
+                "properties": {
+                  "background": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "bestEffort": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "video": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "voice": {
+                    "description": "",
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "macAddress": {
+                "description": "",
+                "type": "string"
+              },
+              "name": {
+                "description": "",
+                "type": "string"
+              },
+              "onboarding": {
+                "description": "",
+                "properties": {
+                  "aaaFailureReason": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "aaaServerIp": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "assocDoneTime": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "assocFailureReason": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "authDoneTime": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "avgAssocDuration": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "avgAuthDuration": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "avgDhcpDuration": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "avgRunDuration": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "dhcpDoneTime": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "dhcpFailureReason": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "dhcpServerIp": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "failedRoamingCount": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "latestFailureReason": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "maxAssocDuration": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "maxAuthDuration": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "maxDhcpDuration": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "maxRoamingDuration": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "maxRunDuration": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "onboardingTime": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "otherFailureReason": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "roamingTime": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "successfulRoamingCount": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "totalRoamingAttempts": {
+                    "description": "",
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "osType": {
+                "description": "",
+                "type": "string"
+              },
+              "osVersion": {
+                "description": "",
+                "type": "string"
+              },
+              "siteHierarchy": {
+                "description": "",
+                "type": "string"
+              },
+              "siteHierarchyId": {
+                "description": "",
+                "type": "string"
+              },
+              "siteId": {
+                "description": "",
+                "type": "string"
+              },
+              "tracked": {
+                "description": "",
+                "type": "string"
+              },
+              "traffic": {
+                "description": "",
+                "properties": {
+                  "dnsRequestCount": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "dnsResponseCount": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "rxBytes": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "rxLinkErrorPercentage": {
+                    "description": "",
+                    "type": "number"
+                  },
+                  "rxPackets": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "rxRate": {
+                    "description": "",
+                    "type": "number"
+                  },
+                  "rxRetries": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "rxRetryPercentage": {
+                    "description": "",
+                    "type": "number"
+                  },
+                  "txBytes": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "txDropPercentage": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "txDrops": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "txLinkErrorPercentage": {
+                    "description": "",
+                    "type": "number"
+                  },
+                  "txPackets": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "txRate": {
+                    "description": "",
+                    "type": "integer"
+                  },
+                  "usage": {
+                    "description": "",
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "type": {
+                "description": "",
+                "type": "string"
+              },
+              "userId": {
+                "description": "",
+                "type": "string"
+              },
+              "username": {
+                "description": "",
+                "type": "string"
+              },
+              "vendor": {
+                "description": "",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "version": {
+          "description": "",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "function"
+}

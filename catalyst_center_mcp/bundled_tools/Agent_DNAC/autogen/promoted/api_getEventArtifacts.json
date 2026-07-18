@@ -1,0 +1,216 @@
+{
+  "function": {
+    "_meta": {
+      "agents": [
+        "catalyst_network_engineer_agent"
+      ]
+    },
+    "additionalMetadata": {
+      "method": "GET",
+      "parameterLocation": {
+        "eventIds": "query",
+        "limit": "query",
+        "offset": "query",
+        "order": "query",
+        "search": "query",
+        "sortBy": "query",
+        "tags": "query"
+      },
+      "uri": "/dna/system/api/v1/event/artifact",
+      "version": "2.3.7.9"
+    },
+    "description": "Gets the list of artifacts based on provided offset and limit",
+    "name": "api_getEventArtifacts",
+    "parameters": {
+      "properties": {
+        "eventIds": {
+          "description": "List of eventIds",
+          "type": "string"
+        },
+        "limit": {
+          "description": "Maximum number of records to be fetched. If not provided, 500 records will be fetched by default",
+          "maximum": 500,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "offset": {
+          "description": "The first record to show for this page. Minimum value is 1",
+          "minimum": 1,
+          "type": "integer"
+        },
+        "order": {
+          "description": "sorting order (asc/desc)",
+          "type": "string"
+        },
+        "search": {
+          "description": "findd matches in name, description, eventId, type, category",
+          "type": "string"
+        },
+        "sortBy": {
+          "description": "Sort by field",
+          "type": "string"
+        },
+        "tags": {
+          "description": "Tags defined",
+          "type": "string"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "responses": {
+      "description": "",
+      "items": {
+        "properties": {
+          "artifactId": {
+            "description": "",
+            "type": "string"
+          },
+          "ciscoDNAEventLink": {
+            "description": "",
+            "type": "string"
+          },
+          "configs": {
+            "description": "",
+            "properties": {
+              "isACKnowledgeable": {
+                "description": "",
+                "type": "boolean"
+              },
+              "isAlert": {
+                "description": "",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "deprecated": {
+            "description": "",
+            "type": "boolean"
+          },
+          "deprecationMessage": {
+            "description": "",
+            "type": "string"
+          },
+          "description": {
+            "description": "",
+            "type": "string"
+          },
+          "domain": {
+            "description": "",
+            "type": "string"
+          },
+          "eventPayload": {
+            "description": "",
+            "properties": {
+              "additionalDetails": {
+                "description": "",
+                "properties": {},
+                "type": "object"
+              },
+              "category": {
+                "description": "",
+                "type": "string"
+              },
+              "details": {
+                "description": "",
+                "properties": {
+                  "device_ip": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "message": {
+                    "description": "",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "eventId": {
+                "description": "",
+                "type": "string"
+              },
+              "severity": {
+                "description": "",
+                "type": "string"
+              },
+              "source": {
+                "description": "",
+                "type": "string"
+              },
+              "type": {
+                "description": "",
+                "type": "string"
+              },
+              "version": {
+                "description": "",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "eventTemplates": {
+            "description": "",
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "isPrivate": {
+            "description": "",
+            "type": "boolean"
+          },
+          "isTemplateEnabled": {
+            "description": "",
+            "type": "boolean"
+          },
+          "isTenantAware": {
+            "description": "",
+            "type": "boolean"
+          },
+          "name": {
+            "description": "",
+            "type": "string"
+          },
+          "namespace": {
+            "description": "",
+            "type": "string"
+          },
+          "note": {
+            "description": "",
+            "type": "string"
+          },
+          "subDomain": {
+            "description": "",
+            "type": "string"
+          },
+          "supportedConnectorTypes": {
+            "description": "",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "tags": {
+            "description": "",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "tenantId": {
+            "description": "",
+            "type": "string"
+          },
+          "version": {
+            "description": "",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "type": "function"
+}

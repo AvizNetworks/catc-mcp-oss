@@ -1,0 +1,62 @@
+{
+  "function": {
+    "_meta": {
+      "agents": [
+        "catalyst_network_engineer_agent"
+      ]
+    },
+    "additionalMetadata": {
+      "method": "POST",
+      "parameterLocation": {
+        "Content-Type": "header",
+        "id": "path"
+      },
+      "uri": "/dna/intent/api/v1/compliance/networkDevices/{id}/issues/remediation/provision",
+      "version": "2.3.7.9"
+    },
+    "description": "Remediates configuration compliance issues. Compliance issues related to 'Routing', 'HA Remediation', 'Software Image', 'Securities Advisories', 'SD-Access Unsupported Configuration', 'Workflow', etc. will not be addressed by this API.\n\nWarning: Fixing compliance mismatches could result in a possible network flap.",
+    "name": "api_complianceRemediation",
+    "parameters": {
+      "properties": {
+        "Content-Type": {
+          "description": "Request body content type",
+          "type": "string"
+        },
+        "id": {
+          "description": "Network device identifier",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Content-Type",
+        "id"
+      ],
+      "type": "object"
+    },
+    "responses": {
+      "description": "",
+      "properties": {
+        "response": {
+          "description": "Response Object.",
+          "properties": {
+            "taskId": {
+              "description": "The UUID of the task.",
+              "type": "string"
+            },
+            "url": {
+              "description": "The path to the API endpoint to GET for information on the task.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "version": {
+          "description": "Version of API.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "function"
+}

@@ -1,0 +1,50 @@
+{
+  "function": {
+    "_meta": {
+      "agents": [
+        "catalyst_network_engineer_agent"
+      ]
+    },
+    "additionalMetadata": {
+      "method": "GET",
+      "parameterLocation": {
+        "siteId": "path"
+      },
+      "uri": "/dna/intent/api/v1/sites/{siteId}/wirelessSettings/flexConnectNativeVlan",
+      "version": "2.3.7.9"
+    },
+    "description": "This API allows the user to get all Native VLAN Settings at the given site. The default value of the native VLAN on the device is 1 when nothing is explicitly set.",
+    "name": "api_getNativeVlanSettingsBySite",
+    "parameters": {
+      "properties": {
+        "siteId": {
+          "description": "Site Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "siteId"
+      ],
+      "type": "object"
+    },
+    "responses": {
+      "description": "",
+      "properties": {
+        "inheritedSiteNameHierarchy": {
+          "description": "The Inherited Site Name Hierarchy specifies the name hierarchy of a parent site from which Native Vlan Id is inherited.",
+          "type": "string"
+        },
+        "inheritedSiteUUID": {
+          "description": "The Inherited Site UUID specifies the unique identifier of a parent site from which Native Vlan Id is inherited.",
+          "type": "string"
+        },
+        "nativeVlanId": {
+          "description": " Native VLAN ID is used for any untagged frames.",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "function"
+}

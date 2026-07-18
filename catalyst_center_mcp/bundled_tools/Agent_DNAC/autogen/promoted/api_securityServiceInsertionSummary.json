@@ -1,0 +1,102 @@
+{
+  "function": {
+    "_meta": {
+      "agents": [
+        "catalyst_network_engineer_agent"
+      ]
+    },
+    "additionalMetadata": {
+      "method": "GET",
+      "parameterLocation": {
+        "fabricSiteName": "query",
+        "limit": "query",
+        "offset": "query",
+        "order": "query"
+      },
+      "uri": "/dna/intent/api/v1/securityServiceInsertionSummaries",
+      "version": "2.3.7.9"
+    },
+    "description": "Retrieves a summary of all Security Service Insertions (SSIs) sorted by fabricSiteName.",
+    "name": "api_securityServiceInsertionSummary",
+    "parameters": {
+      "properties": {
+        "fabricSiteName": {
+          "description": "Filter by fabric site name (supports partial search). For example, searching for \"London\" will match \"London fabric site\", etc.",
+          "type": "string"
+        },
+        "limit": {
+          "description": "Maximum number of records to be fetched. If not provided, 500 records will be fetched by default",
+          "maximum": 500,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "offset": {
+          "description": "The first record to show for this page. Minimum value is 1",
+          "minimum": 1,
+          "type": "integer"
+        },
+        "order": {
+          "description": "The sorting order for the response can be specified as either ascending (asc) or descending (desc). If no value is specified, the default order is ascending (asc).",
+          "type": "string"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "responses": {
+      "description": "",
+      "properties": {
+        "response": {
+          "description": "List of summaries of Security Service Insertion.",
+          "items": {
+            "properties": {
+              "borderNodesCount": {
+                "description": "Count of Border nodes involved in the service insertion.",
+                "type": "integer"
+              },
+              "controlPlaneNodesCount": {
+                "description": "Count of Control plane nodes involved in the service",
+                "type": "integer"
+              },
+              "edgeNodesCount": {
+                "description": "Count of Edge nodes involved in the service insertion.",
+                "type": "integer"
+              },
+              "fabricSiteName": {
+                "description": "The name of the SDA fabric site.",
+                "type": "string"
+              },
+              "id": {
+                "description": "The unique identifier of the Security Service Insertion (SSI).",
+                "type": "string"
+              },
+              "provisionStatus": {
+                "description": "The readiness status of the fabric site.",
+                "enum": [
+                  "PROVISIONED, NOT_PROVISIONED"
+                ],
+                "type": "string"
+              },
+              "siteId": {
+                "description": "SDA fabric site Id.",
+                "type": "string"
+              },
+              "virtualNetworksAssociatedCount": {
+                "description": "Count of virtual networks associated with this security service insertion.",
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "version": {
+          "description": "Version number of the response.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "function"
+}
