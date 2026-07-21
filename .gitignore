@@ -1,0 +1,8 @@
+# Build artifacts
+
+.envrc
+.flox
+catalyst_center_mcp.egg-info/
+catalyst_center_mcp/
+tests/
+
