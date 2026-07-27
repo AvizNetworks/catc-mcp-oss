@@ -413,6 +413,8 @@ from selecting a bundled operation that the configured account can execute.
 
 ## Policies and Support
 
+- [LICENSE](License.md) contains more information about the Apache 2.0 license
+  under which this software is distributed.
 - [NOTICE](NOTICE.md) describes the Cisco Catalyst Center and API terms that
   apply when this software communicates with Catalyst Center. Those terms are
   separate from the open-source license governing this code.

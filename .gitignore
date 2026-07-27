@@ -1,3 +1,7 @@
+# Build tooling and artifacts
+
+.envrc
+.flox
 .coverage
 .pytest_cache/
 .venv/
@@ -5,3 +9,4 @@ __pycache__/
 *.egg-info/
 *.pyc
 uv.lock
+
