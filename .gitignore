@@ -1,8 +1,12 @@
-# Build artifacts
+# Build tooling and artifacts
 
 .envrc
 .flox
-catalyst_center_mcp.egg-info/
-catalyst_center_mcp/
-tests/
+.coverage
+.pytest_cache/
+.venv/
+__pycache__/
+*.egg-info/
+*.pyc
+uv.lock
 
