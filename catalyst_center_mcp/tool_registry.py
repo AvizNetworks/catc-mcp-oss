@@ -185,6 +185,19 @@ def _drop_none_values(values: dict[str, Any]) -> dict[str, Any]:
     return {key: value for key, value in values.items() if value is not None}
 
 
+def _coerce_query_value(value: Any) -> Any:
+    """Coerce JSON-number floats to ints for CatC query params.
+
+    Catalyst Center rejects float epoch timestamps (e.g. startTime=1.7e12.5)
+    with a bare \"Http Error Code:404\" even when the path is valid.
+    """
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, float):
+        return int(value)
+    return value
+
+
 def _replace_path_params(uri: str, path_params: dict[str, Any]) -> str:
     path = uri
     for key, value in path_params.items():
@@ -219,9 +232,9 @@ def build_request_payload(tool: ToolDefinition, arguments: dict[str, Any]) -> Re
         elif location in {"body", "requestbody", "json"}:
             body_fields[key] = value
         elif location in {"query", "queryparam", "query_parameter"}:
-            query[key] = value
+            query[key] = _coerce_query_value(value)
         elif method.upper() in {"GET", "DELETE"}:
-            query[key] = value
+            query[key] = _coerce_query_value(value)
         else:
             body_fields[key] = value
 

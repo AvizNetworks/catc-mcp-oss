@@ -61,6 +61,10 @@ class CatalystCenterClient:
             return self._token
 
         self._settings.validate_credentials()
+        if self._settings.auth_token:
+            self._token = self._settings.auth_token
+            return self._token
+
         response = await self._client.post(
             self._settings.auth_path,
             auth=(self._settings.username, self._settings.password),

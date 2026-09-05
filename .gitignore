@@ -10,3 +10,6 @@ __pycache__/
 *.pyc
 uv.lock
 
+# Local-only NCP custom SDK agent (not part of the MCP image)
+ncp-sdk-agent/
+

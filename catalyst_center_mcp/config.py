@@ -60,6 +60,7 @@ class Settings:
     base_url: str
     username: str
     password: str
+    auth_token: str = ""
     verify_ssl: bool = False
     timeout_seconds: float = 30.0
     auth_path: str = DEFAULT_AUTH_PATH
@@ -76,17 +77,22 @@ class Settings:
         host = env.get("CATALYST_CENTER_HOST") or env.get("CATALYST_CENTER_IP") or ""
         username = env.get("CATALYST_CENTER_USERNAME", "")
         password = env.get("CATALYST_CENTER_PASSWORD", "")
+        auth_token = (
+            env.get("CATALYST_CENTER_TOKEN", "")
+            or env.get("CATALYST_CENTER_AUTH_TOKEN", "")
+        ).strip()
 
         if require_credentials:
-            missing = [
-                name
-                for name, value in {
-                    "CATALYST_CENTER_HOST": host,
-                    "CATALYST_CENTER_USERNAME": username,
-                    "CATALYST_CENTER_PASSWORD": password,
-                }.items()
-                if not value
-            ]
+            missing = ["CATALYST_CENTER_HOST"] if not host else []
+            if not auth_token and not (username and password):
+                missing.extend(
+                    name
+                    for name, value in {
+                        "CATALYST_CENTER_USERNAME": username,
+                        "CATALYST_CENTER_PASSWORD": password,
+                    }.items()
+                    if not value
+                )
             if missing:
                 raise SettingsError(
                     "Missing required environment variable(s): " + ", ".join(missing)
@@ -102,6 +108,7 @@ class Settings:
             base_url=base_url,
             username=username,
             password=password,
+            auth_token=auth_token,
             verify_ssl=parse_bool(env.get("CATALYST_CENTER_VERIFY_SSL"), default=False),
             timeout_seconds=timeout,
             auth_path=auth_path,
@@ -109,15 +116,18 @@ class Settings:
         )
 
     def validate_credentials(self) -> None:
-        missing = [
-            name
-            for name, value in {
-                "CATALYST_CENTER_HOST": self.base_url,
-                "CATALYST_CENTER_USERNAME": self.username,
-                "CATALYST_CENTER_PASSWORD": self.password,
-            }.items()
-            if not value
-        ]
+        missing = []
+        if not self.base_url:
+            missing.append("CATALYST_CENTER_HOST")
+        if not self.auth_token and not (self.username and self.password):
+            missing.extend(
+                name
+                for name, value in {
+                    "CATALYST_CENTER_USERNAME": self.username,
+                    "CATALYST_CENTER_PASSWORD": self.password,
+                }.items()
+                if not value
+            )
         if missing:
             raise SettingsError(
                 "Missing required environment variable(s): " + ", ".join(missing)

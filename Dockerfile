@@ -29,6 +29,6 @@ COPY scripts ./scripts
 
 RUN python3 -m pip install --break-system-packages --no-cache-dir .
 
-EXPOSE 7001
+EXPOSE 7001 8001
 
 CMD ["python3", "-m", "uvicorn", "catalyst_center_mcp.main:app", "--host", "0.0.0.0", "--port", "7001"]
