@@ -11,7 +11,7 @@
         "feature": "query",
         "id": "path"
       },
-      "uri": "/dna/intent/api/v1/intent/api/v1/wired/networkDevices/{id}/configFeatures/intended/layer2",
+      "uri": "/dna/intent/api/v1/wired/networkDevices/{id}/configFeatures/intended/layer2",
       "version": "2.3.7.9"
     },
     "description": "This API returns the configurations for the intended layer 2 features on a wired device. Even after the intended configurations are deployed using the API /intent/api/v1/networkDevices/{id}/configFeatures/intended/deploy, they continue to be a part of the intended features on the device.",

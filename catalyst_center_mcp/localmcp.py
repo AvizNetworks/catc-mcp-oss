@@ -24,7 +24,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from catalyst_center_mcp.config import SettingsError, get_settings
-from catalyst_center_mcp.main import create_mcp
+from catalyst_center_mcp.mcp_factory import create_mcp
 
 logger = logging.getLogger(__name__)
 
@@ -47,9 +47,11 @@ app = FastAPI(
     version="0.1.0",
     lifespan=lifespan,
 )
-app.mount("", mcp_app)
 
 
 @app.get("/health")
 async def health() -> dict[str, str]:
     return {"status": "ok", "transport": "sse"}
+
+
+app.mount("", mcp_app)

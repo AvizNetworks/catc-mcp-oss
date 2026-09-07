@@ -8,7 +8,7 @@
     "additionalMetadata": {
       "method": "GET",
       "parameterLocation": {},
-      "uri": "/dna/intent/api/v1/intent/api/v1/wirelessSettings/interfaces/count",
+      "uri": "/dna/intent/api/v1/wirelessSettings/interfaces/count",
       "version": "2.3.7.9"
     },
     "description": "This API allows the user to get count of all interfaces.",

@@ -10,7 +10,7 @@
       "parameterLocation": {
         "id": "path"
       },
-      "uri": "/dna/intent/api/v1/intent/api/v1/activities/{id}",
+      "uri": "/dna/intent/api/v1/activities/{id}",
       "version": "2.3.7.9"
     },
     "description": "Returns the activity with the given ID",

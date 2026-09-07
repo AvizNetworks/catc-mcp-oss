@@ -20,24 +20,11 @@ import logging
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
-from fastmcp import FastMCP
 
 from catalyst_center_mcp.config import SettingsError, get_settings
-from catalyst_center_mcp.tool_loader import load_tools
-from catalyst_center_mcp.tool_registry import register_tools
+from catalyst_center_mcp.mcp_factory import create_mcp
 
 logger = logging.getLogger(__name__)
-
-
-def create_mcp() -> FastMCP:
-    mcp = FastMCP("catalyst-center-mcp")
-    settings = get_settings()
-    tools_root = settings.bundled_tools_dir
-    tools = load_tools(tools_root)
-    count = register_tools(mcp, tools)
-    logger.info("Registered %s bundled Catalyst Center tools", count)
-    return mcp
-
 
 mcp = create_mcp()
 mcp_app = mcp.http_app(path="/mcp", transport="streamable-http", stateless_http=True)
