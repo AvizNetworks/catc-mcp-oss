@@ -1,0 +1,254 @@
+{
+  "function": {
+    "_meta": {
+      "agents": [
+        "catalyst_network_engineer_agent"
+      ],
+      "max_controller_version": "3.1.3",
+      "min_controller_version": "2.3.7.9"
+    },
+    "additionalMetadata": {
+      "method": "GET",
+      "parameterLocation": {
+        "id": "path",
+        "recordsToReturn": "path",
+        "startIndex": "path",
+        "taskId": "query"
+      },
+      "uri": "/dna/intent/api/v1/discovery/{id}/network-device/{startIndex}/{recordsToReturn}",
+      "version": "2.3.7.9"
+    },
+    "description": "Returns the network devices discovered for the given discovery and for the given range. The maximum number of records that can be retrieved is 500. Discovery ID can be obtained using the \"Get Discoveries by range\" API.",
+    "name": "api_getDiscoveredDevicesByRange",
+    "parameters": {
+      "properties": {
+        "id": {
+          "description": "Discovery ID",
+          "type": "string"
+        },
+        "recordsToReturn": {
+          "description": "Number of records to fetch from the start index",
+          "type": "integer"
+        },
+        "startIndex": {
+          "description": "Starting index for the records",
+          "type": "integer"
+        },
+        "taskId": {
+          "description": "taskId",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "startIndex",
+        "recordsToReturn"
+      ],
+      "type": "object"
+    },
+    "responses": {
+      "description": "",
+      "properties": {
+        "response": {
+          "description": "",
+          "items": {
+            "properties": {
+              "anchorWlcForAp": {
+                "description": "Connected WLC device for AP",
+                "type": "string"
+              },
+              "authModelId": {
+                "description": "Authentication model Id on device",
+                "type": "string"
+              },
+              "avgUpdateFrequency": {
+                "description": "Frequency in which interface info gets updated",
+                "type": "integer"
+              },
+              "bootDateTime": {
+                "description": "Device boot time",
+                "type": "string"
+              },
+              "cliStatus": {
+                "description": "CLI status at the time of discovery",
+                "type": "string"
+              },
+              "duplicateDeviceId": {
+                "description": "Identifier of the duplicate ip of the same device discovered",
+                "type": "string"
+              },
+              "errorCode": {
+                "description": "Error code when inventory collection fails",
+                "type": "string"
+              },
+              "errorDescription": {
+                "description": "Error description when inventory collection fails",
+                "type": "string"
+              },
+              "family": {
+                "description": "Family of device as switch, router, wireless lan controller, accesspoints",
+                "type": "string"
+              },
+              "hostname": {
+                "description": "Device name",
+                "type": "string"
+              },
+              "httpStatus": {
+                "description": "HTTP(S) status at the time of discovery",
+                "type": "string"
+              },
+              "id": {
+                "description": "Unique identifier of network device",
+                "type": "string"
+              },
+              "imageName": {
+                "description": "Image details on the device",
+                "type": "string"
+              },
+              "ingressQueueConfig": {
+                "description": "Ingress queue config on device",
+                "type": "string"
+              },
+              "interfaceCount": {
+                "description": "Number of interfaces on the device",
+                "type": "string"
+              },
+              "inventoryCollectionStatus": {
+                "description": "Last known collection status of the device. Available values are : 'Deleting Device', 'Partial Collection Failure', 'Yet to Sync', 'Could Not Synchronize', 'Not Manageable', 'Managed', 'Incomplete', 'Unreachable', 'In Progress', 'Maintenance', 'Sync Disabled', 'Quarantined', 'Unassociated', 'Unknown'",
+                "type": "string"
+              },
+              "inventoryReachabilityStatus": {
+                "description": "Last known reachability status of the device. Available values are : 'Reachable', 'Unreachable', 'PingReachable' and 'NOT-AVAILABLE\u2019",
+                "type": "string"
+              },
+              "lastUpdated": {
+                "description": "Time when the network device info last got updated",
+                "type": "string"
+              },
+              "lineCardCount": {
+                "description": "Number of linecards on the device",
+                "type": "string"
+              },
+              "lineCardId": {
+                "description": "IDs of linecards of the device",
+                "type": "string"
+              },
+              "location": {
+                "description": "Location ID that is associated with the device",
+                "type": "string"
+              },
+              "locationName": {
+                "description": "Name of the associated location",
+                "type": "string"
+              },
+              "macAddress": {
+                "description": "MAC address of device",
+                "type": "string"
+              },
+              "managementIpAddress": {
+                "description": "IP address of the device",
+                "type": "string"
+              },
+              "memorySize": {
+                "description": "Processor memory size",
+                "type": "string"
+              },
+              "netconfStatus": {
+                "description": "NETCONF status at the time of discovery. Available values are 'SUCCESS', 'FAILURE', 'NOT-PROVIDED' and 'NOT-VALIDATED'",
+                "type": "string"
+              },
+              "numUpdates": {
+                "description": "Number of time network-device info got updated",
+                "type": "integer"
+              },
+              "pingStatus": {
+                "description": "Ping status at the time of discovery. Available values are 'SUCCESS', 'FAILURE', 'NOT-PROVIDED' and 'NOT-VALIDATED'",
+                "type": "string"
+              },
+              "platformId": {
+                "description": "Platform ID of device",
+                "type": "string"
+              },
+              "portRange": {
+                "description": "Range of ports on device",
+                "type": "string"
+              },
+              "qosStatus": {
+                "description": "Qos status on device",
+                "type": "string"
+              },
+              "reachabilityFailureReason": {
+                "description": "Failure reason for unreachable devices",
+                "type": "string"
+              },
+              "reachabilityStatus": {
+                "description": "Reachability status of a device as Success/Failure/Discarded",
+                "type": "string"
+              },
+              "role": {
+                "description": "Role of device as access, distribution, border router, core",
+                "type": "string"
+              },
+              "roleSource": {
+                "description": "Role source as manual / auto",
+                "type": "string"
+              },
+              "serialNumber": {
+                "description": "Serial number of device",
+                "type": "string"
+              },
+              "snmpContact": {
+                "description": "SNMP contact on device",
+                "type": "string"
+              },
+              "snmpLocation": {
+                "description": "SNMP location on device",
+                "type": "string"
+              },
+              "snmpStatus": {
+                "description": "SNMP status at the time of discovery",
+                "type": "string"
+              },
+              "softwareVersion": {
+                "description": "Software version on the device",
+                "type": "string"
+              },
+              "tag": {
+                "description": "Tag ID that is associated with the device",
+                "type": "string"
+              },
+              "tagCount": {
+                "description": "Number of tags associated with the device",
+                "type": "integer"
+              },
+              "type": {
+                "description": "Type of device as switch, router, wireless lan controller, accesspoints",
+                "type": "string"
+              },
+              "upTime": {
+                "description": "Time that shows for how long the device has been up",
+                "type": "string"
+              },
+              "vendor": {
+                "description": "Vendor information of the device",
+                "type": "string"
+              },
+              "wlcApDeviceStatus": {
+                "description": "Collection status of AP devices",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "version": {
+          "description": "",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "function"
+}

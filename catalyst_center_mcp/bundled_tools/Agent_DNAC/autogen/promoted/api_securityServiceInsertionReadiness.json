@@ -1,0 +1,122 @@
+{
+  "function": {
+    "_meta": {
+      "agents": [
+        "catalyst_network_engineer_agent"
+      ]
+    },
+    "additionalMetadata": {
+      "method": "GET",
+      "parameterLocation": {},
+      "uri": "/dna/intent/api/v1/securityServiceInsertion/systemReadiness",
+      "version": "2.3.7.9"
+    },
+    "description": "Gets readiness information for Security Service Insertion, including integration status, security group details, and access control information.",
+    "name": "api_securityServiceInsertionReadiness",
+    "parameters": {
+      "properties": {},
+      "required": [],
+      "type": "object"
+    },
+    "responses": {
+      "description": "",
+      "properties": {
+        "response": {
+          "description": "",
+          "properties": {
+            "accessControlDetails": {
+              "description": "Ensure the Access Control Application is installed, Software-Defined Access is deployed (v2.2+), and virtual networks are configured.",
+              "properties": {
+                "accessControlAppPkgStatus": {
+                  "description": "The installation status of the access control application package.",
+                  "enum": [
+                    "INSTALLED, NOT_INSTALLED"
+                  ],
+                  "type": "string"
+                },
+                "fabricSitesCount": {
+                  "description": "The total number of fabric sites monitored.",
+                  "type": "integer"
+                },
+                "readiness": {
+                  "description": "Indicates the overall readiness status of the access control setup.",
+                  "enum": [
+                    "READY, NOT_READy"
+                  ],
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "ise": {
+              "description": "Ensure ISE (Identity Services Engine) is integrated, synced, and running version 3.4 or higher.",
+              "properties": {
+                "integrationStatus": {
+                  "description": "The current integration status of ISE.",
+                  "enum": [
+                    "INTEGRATED, NOT_INTEGRATED"
+                  ],
+                  "type": "string"
+                },
+                "readiness": {
+                  "description": "Indicates the overall readiness status of the ISE system.",
+                  "enum": [
+                    "READY, NOT_READY"
+                  ],
+                  "type": "string"
+                },
+                "syncStatus": {
+                  "description": "The synchronization status of ISE.",
+                  "enum": [
+                    "SYNCHRONIZED, NOT_SYNCHRONIZED"
+                  ],
+                  "type": "string"
+                },
+                "version": {
+                  "description": "The current version of ISE in use.",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "readiness": {
+              "description": "Represents the overall readiness status of the system and its components.",
+              "enum": [
+                "READY, NOT_READY"
+              ],
+              "type": "string"
+            },
+            "securityGroup": {
+              "description": "Ensure that security groups exist; if SGTs (Security Group Tags) managed by ISE cannot be created in the Catalyst center.",
+              "properties": {
+                "readiness": {
+                  "description": "Indicates the overall readiness status of the security groups.",
+                  "enum": [
+                    "READY, NOT_READY"
+                  ],
+                  "type": "string"
+                },
+                "securityGroupsCount": {
+                  "description": "The total number of security groups established.",
+                  "type": "integer"
+                },
+                "sgtManagedBy": {
+                  "description": "The entity responsible for managing the Security Group Tags (SGTs).",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "version": {
+          "description": "Version number of the response.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "function"
+}

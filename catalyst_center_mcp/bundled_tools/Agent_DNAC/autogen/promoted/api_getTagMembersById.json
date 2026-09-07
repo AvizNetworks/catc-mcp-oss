@@ -1,0 +1,84 @@
+{
+  "function": {
+    "_meta": {
+      "agents": [
+        "catalyst_network_engineer_agent"
+      ]
+    },
+    "additionalMetadata": {
+      "method": "GET",
+      "parameterLocation": {
+        "id": "path",
+        "level": "query",
+        "limit": "query",
+        "memberAssociationType": "query",
+        "memberType": "query",
+        "offset": "query"
+      },
+      "uri": "/dna/intent/api/v1/tag/{id}/member",
+      "version": "2.3.7.9"
+    },
+    "description": "**TAG MEMBER LISTING TOOL:**\n- Select this tool together with `api_getTag` when the user provides a human-readable tag name and asks to list, show, get, find, identify, or ask what/which members are inside that tag.\n- Execute this tool after `api_getTag` returns the tag UUID. This tool requires a UUID in `id`; never pass the tag name as `id`.\n- Use this for tag-to-device and tag-to-interface/tag-to-port listing workflows.\n- Use `memberType=\"networkdevice\"` when the requested members are devices.\n- Use `memberType=\"interface\"` when the requested members are ports or interfaces.\n**TAG NAME DISAMBIGUATION:**\n- If the request uses `tag`, `tagged`, `with <value> tag`, `under tag`, or `in tag` and asks which/list/show/get devices, network devices, ports, or interfaces belong to that value, select this tool with `api_getTag`.\n- The value introduced by the tag phrase remains a tag name even if it contains words like switch, device, site, port, interface, up, or down. Do not route it to site, device, interface, or inventory lookup tools.\n- For devices or network devices inside the tag, use `memberType=\"networkdevice\"`. For ports or interfaces inside the tag, use `memberType=\"interface\"`.\n\n**REQUIRED WORKFLOW:**\n1. `api_getTag(name=<tag_name>)`\n2. Extract the returned tag UUID.\n3. `api_getTagMembersById(id=<UUID>, memberType=<networkdevice_or_interface>)`\n\n**DO NOT SUBSTITUTE:**\n- Do not use this tool for count/how-many/total/number questions; use `api_getTagMemberCount` after `api_getTag` instead.\n- Do not leave the workflow at `api_getTag`; once the UUID is known, this tool performs the member lookup.\n- Do not keep calling `api_getTag` repeatedly after the UUID has already been resolved.\n- Do not use `api_getInterfaces`, generic device inventory, site lookup, resource-type discovery, or inverse tag-association tools when the user wants members of one named tag.\n- Do not fall back to generic KB guidance for live named-tag membership.\n\n**TAG + SITE OR COMPLIANCE NOTE:**\n- This API returns tag-scoped members. If the user also names a site or asks for compliance, intersect these tag members with the requested site or compliance filter before forming the final answer.",
+    "name": "api_getTagMembersById",
+    "parameters": {
+      "properties": {
+        "id": {
+          "description": "The tag UUID \u2014 must match the pattern [0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12} (e.g., '178a3ae2-7e1c-4813-8745-dfcd4cb34b6b'). Do NOT pass a tag name or any other non-UUID string \u2014 it will fail. You must first call api_getTag with the tag name to retrieve its UUID, then pass that UUID here.",
+          "type": "string"
+        },
+        "level": {
+          "description": "level",
+          "type": "string"
+        },
+        "limit": {
+          "description": "Maximum number of records to be fetched. If not provided, 500 records will be fetched by default",
+          "maximum": 500,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "memberAssociationType": {
+          "description": "Indicates how the member is associated with the tag. Possible values and description. 1) DYNAMIC : The member is associated to the tag through rules. 2) STATIC \u2013 The member is associated to the tag manually. 3) MIXED \u2013 The member is associated manually and also satisfies the rule defined for the tag",
+          "type": "string"
+        },
+        "memberType": {
+          "description": "Member type: use 'networkdevice' when the user asks about devices, or 'interface' when the user asks about interfaces or ports.",
+          "type": "string"
+        },
+        "offset": {
+          "description": "The first record to show for this page. Minimum value is 1",
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "memberType"
+      ],
+      "type": "object"
+    },
+    "responses": {
+      "description": "",
+      "properties": {
+        "response": {
+          "description": "",
+          "items": {
+            "properties": {
+              "instanceUuid": {
+                "description": "",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "version": {
+          "description": "",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "function"
+}

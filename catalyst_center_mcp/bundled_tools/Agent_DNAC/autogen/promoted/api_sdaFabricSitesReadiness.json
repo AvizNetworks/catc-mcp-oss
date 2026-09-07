@@ -1,0 +1,96 @@
+{
+  "function": {
+    "_meta": {
+      "agents": [
+        "catalyst_network_engineer_agent"
+      ]
+    },
+    "additionalMetadata": {
+      "method": "GET",
+      "parameterLocation": {
+        "order": "query",
+        "sortBy": "query"
+      },
+      "uri": "/dna/intent/api/v1/securityServiceInsertion/fabricSitesReadiness",
+      "version": "2.3.7.9"
+    },
+    "description": "Gets a list of all SDA fabric sites along with their readiness status for Security Service Insertion (SSI) deployment.",
+    "name": "api_sdaFabricSitesReadiness",
+    "parameters": {
+      "properties": {
+        "order": {
+          "description": "Whether ascending or descending order should be used to sort the response.",
+          "type": "number"
+        },
+        "sortBy": {
+          "description": "Sort results by the fabric site name.",
+          "type": "string"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "responses": {
+      "description": "",
+      "properties": {
+        "response": {
+          "description": "Response object containing a list of SDA fabric sites.",
+          "items": {
+            "properties": {
+              "borderDeviceCount": {
+                "description": "The count of border devices in the fabric site.",
+                "type": "integer"
+              },
+              "edgeDeviceCount": {
+                "description": "The count of edge devices in the fabric site.",
+                "type": "integer"
+              },
+              "fabricSiteName": {
+                "description": "The name of the fabric site.",
+                "type": "string"
+              },
+              "id": {
+                "description": "The unique identifier of the SDA fabric site.",
+                "type": "string"
+              },
+              "lispPubsub": {
+                "description": "Indicates whether Lisp Pub/Sub is enabled or disabled.",
+                "enum": [
+                  "ENABLED, DISABLED"
+                ],
+                "type": "string"
+              },
+              "mapServerDeviceCount": {
+                "description": "The count of map server devices in the fabric site.",
+                "type": "integer"
+              },
+              "message": {
+                "description": "Additional message regarding the fabric site readiness",
+                "type": "string"
+              },
+              "readiness": {
+                "description": "The readiness status of the fabric site.",
+                "enum": [
+                  "READY, NOT_READY"
+                ],
+                "type": "string"
+              },
+              "virtualNetworkCount": {
+                "description": "The total number of virtual networks present in the fabric site.",
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "version": {
+          "description": "Version number of the response.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "function"
+}

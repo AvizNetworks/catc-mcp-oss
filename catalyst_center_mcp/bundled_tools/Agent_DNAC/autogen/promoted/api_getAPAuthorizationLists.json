@@ -1,0 +1,108 @@
+{
+  "function": {
+    "_meta": {
+      "agents": [
+        "catalyst_network_engineer_agent"
+      ]
+    },
+    "additionalMetadata": {
+      "method": "GET",
+      "parameterLocation": {
+        "apAuthorizationListName": "query",
+        "limit": "query",
+        "offset": "query"
+      },
+      "uri": "/dna/intent/api/v1/wirelessSettings/apAuthorizationLists",
+      "version": "2.3.7.9"
+    },
+    "description": "Retrieves the AP Authorization Lists that are created in the Catalyst Centre network Design for wireless. If an AP Authorization List name is given as query parameter, then returns respective AP Authorization List details including Local and/or Remote authorization.",
+    "name": "api_getAPAuthorizationLists",
+    "parameters": {
+      "properties": {
+        "apAuthorizationListName": {
+          "description": "Employ this query parameter to obtain the details of the AP Authorization List corresponding to the provided apAuthorizationListName.",
+          "type": "string"
+        },
+        "limit": {
+          "description": "Maximum number of records to be fetched. If not provided, 500 records will be fetched by default",
+          "maximum": 500,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "offset": {
+          "description": "The first record to show for this page. Minimum value is 1",
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "responses": {
+      "description": "",
+      "properties": {
+        "response": {
+          "description": "",
+          "properties": {
+            "apAuthorizationListName": {
+              "description": "",
+              "type": "string"
+            },
+            "id": {
+              "description": "",
+              "type": "string"
+            },
+            "localAuthorization": {
+              "description": "",
+              "properties": {
+                "apMacEntries": {
+                  "description": "",
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "apSerialNumberEntries": {
+                  "description": "",
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            },
+            "remoteAuthorization": {
+              "description": "",
+              "properties": {
+                "aaaServers": {
+                  "description": "",
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "authorizeApWithMac": {
+                  "description": "",
+                  "type": "boolean"
+                },
+                "authorizeApWithSerialNumber": {
+                  "description": "",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "version": {
+          "description": "Version",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "function"
+}

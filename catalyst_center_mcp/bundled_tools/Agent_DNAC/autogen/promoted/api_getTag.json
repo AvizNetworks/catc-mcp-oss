@@ -1,0 +1,167 @@
+{
+  "function": {
+    "_meta": {
+      "agents": [
+        "catalyst_network_engineer_agent"
+      ]
+    },
+    "additionalMetadata": {
+      "method": "GET",
+      "parameterLocation": {
+        "additionalInfo.attributes": "query",
+        "additionalInfo.nameSpace": "query",
+        "field": "query",
+        "level": "query",
+        "limit": "query",
+        "name": "query",
+        "offset": "query",
+        "order": "query",
+        "size": "query",
+        "sortBy": "query",
+        "systemTag": "query"
+      },
+      "uri": "/dna/intent/api/v1/tag",
+      "version": "2.3.7.9"
+    },
+    "description": "**TAG DEFINITION LISTING RULE:**\n- Use this API to enumerate existing tag definitions when the user asks for available, existing, default/system, or custom/user-created tags.\n- For an unfiltered tag-definition inventory, omit both `name` and `systemTag`.\n- Use `systemTag=true` only for system-created/default tag definitions, and `systemTag=false` only for user-created/custom tag definitions.\n- Do not use `api_getTagResourceTypes` for tag-definition inventory; that tool returns taggable object categories, not existing tag records.\n**TAG PHRASE INTERPRETATION RULE:**\n- When the user says `tag <value>`, `tagged <value>`, `tagged with <value>`, `tagged as <value>`, `with <value> tag`, `under tag <value>`, or `in tag <value>`, treat `<value>` as a tag name and pass that literal value to `name`.\n- Tag names can look like switch names, device labels, site names, interface labels, operational states, or camelCase words. The presence of words like switch, device, site, port, interface, up, or down inside the value does not change it into a device/site/interface lookup when the user introduced it as a tag.\n- Do not reinterpret a tag name as a switch, hostname, site, interface, IP address, or inventory search term.\n\n**NAMED-TAG RESOLVER RULE:**\n- Use this API first when the user gives a human-readable tag name and asks for devices, ports, interfaces, or member counts inside that tag.\n- This tool resolves the tag name to a tag UUID. It is not the final answer tool for member questions.\n- After a successful response containing an `id`, immediately call exactly one companion member tool:\n  - `api_getTagMembersById` for list/show/get/find/which/what member requests.\n  - `api_getTagMemberCount` for count/how-many/total/number member requests.\n- For device membership, the companion tool must use `memberType=\"networkdevice\"`.\n- For port or interface membership, the companion tool must use `memberType=\"interface\"`.\n- Repeating `api_getTag` with the same tag name after a UUID has been returned is incorrect; move to the companion member tool.\n\n**DO NOT SUBSTITUTE:**\n- Do not use `api_getTagCount` for named-tag member counts; it counts tag definitions, not members.\n- Do not use `api_getInterfaces` or generic device/interface inventory tools to answer which resources are in one tag.\n- Do not use inverse association tools when the user wants tag-to-member lookup.\n- Do not start with `api_getTagResourceTypes`, site tools, or knowledge-base fallback for live named-tag membership questions.\n- Do not reuse the tag name as a site name, device name, interface name, IP address, or UUID.\n\n**TAG + SITE OR COMPLIANCE NOTE:**\n- If a request combines a named tag with a site or compliance filter, this API still only resolves the tag UUID. Ground the tag by calling `api_getTagMembersById` with that UUID before applying site or compliance filtering.",
+    "name": "api_getTag",
+    "parameters": {
+      "properties": {
+        "additionalInfo.attributes": {
+          "description": "attributeName",
+          "type": "string"
+        },
+        "additionalInfo.nameSpace": {
+          "description": "nameSpace",
+          "type": "string"
+        },
+        "field": {
+          "description": "Available field names are :'name,id,parentId,type,additionalInfo.nameSpace,additionalInfo.attributes'",
+          "type": "string"
+        },
+        "level": {
+          "description": "levelArg",
+          "type": "string"
+        },
+        "limit": {
+          "description": "Maximum number of records to be fetched. If not provided, 500 records will be fetched by default",
+          "maximum": 500,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "name": {
+          "description": "Tag name is mandatory when filter operation is used.",
+          "type": "string"
+        },
+        "offset": {
+          "description": "The first record to show for this page. Minimum value is 1",
+          "minimum": 1,
+          "type": "integer"
+        },
+        "order": {
+          "description": "Available values are asc and des",
+          "type": "string"
+        },
+        "size": {
+          "description": "size in kilobytes(KB)",
+          "type": "string"
+        },
+        "sortBy": {
+          "description": "Only supported attribute is name. SortyBy is mandatory when order is used.",
+          "type": "string"
+        },
+        "systemTag": {
+          "description": "Filter by system tag. Set to true to return only system-created tags, or false to return only user-created tags. Omit to return all tags.",
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "responses": {
+      "description": "",
+      "properties": {
+        "response": {
+          "description": "",
+          "items": {
+            "properties": {
+              "description": {
+                "description": "",
+                "type": "string"
+              },
+              "dynamicRules": {
+                "description": "",
+                "items": {
+                  "properties": {
+                    "memberType": {
+                      "description": "",
+                      "type": "string"
+                    },
+                    "rules": {
+                      "description": "",
+                      "properties": {
+                        "items": {
+                          "description": "",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "name": {
+                          "description": "",
+                          "type": "string"
+                        },
+                        "operation": {
+                          "description": "",
+                          "type": "string"
+                        },
+                        "value": {
+                          "description": "",
+                          "type": "string"
+                        },
+                        "values": {
+                          "description": "",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "id": {
+                "description": "",
+                "type": "string"
+              },
+              "instanceTenantId": {
+                "description": "",
+                "type": "string"
+              },
+              "name": {
+                "description": "",
+                "type": "string"
+              },
+              "systemTag": {
+                "description": "",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "version": {
+          "description": "",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "function"
+}

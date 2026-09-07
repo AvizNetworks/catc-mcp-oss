@@ -1,0 +1,111 @@
+{
+  "function": {
+    "_meta": {
+      "agents": [
+        "catalyst_network_engineer_agent"
+      ],
+      "max_controller_version": "3.1.3",
+      "min_controller_version": "2.3.7.9"
+    },
+    "additionalMetadata": {
+      "method": "GET",
+      "parameterLocation": {
+        "cliStatus": "query",
+        "httpStatus": "query",
+        "id": "path",
+        "ipAddress": "query",
+        "netconfStatus": "query",
+        "pingStatus": "query",
+        "snmpStatus": "query",
+        "sortBy": "query",
+        "sortOrder": "query",
+        "taskId": "query"
+      },
+      "uri": "/dna/intent/api/v1/discovery/{id}/summary",
+      "version": "2.3.7.9"
+    },
+    "description": "Returns the devices discovered in the given discovery based on given filters. Discovery ID can be obtained using the \"Get Discoveries by range\" API.",
+    "name": "api_getNetworkDevicesFromDiscovery",
+    "parameters": {
+      "properties": {
+        "cliStatus": {
+          "description": "CLI status for the IP during the job run. Available values are 'SUCCESS', 'FAILURE', 'NOT-PROVIDED' and 'NOT-VALIDATED'",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "httpStatus": {
+          "description": "HTTP staus for the IP during the job run. Available values are 'SUCCESS', 'FAILURE', 'NOT-PROVIDED' and 'NOT-VALIDATED'",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Discovery ID",
+          "type": "string"
+        },
+        "ipAddress": {
+          "description": "IP Address of the device",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "netconfStatus": {
+          "description": "NETCONF status for the IP during the job run. Available values are 'SUCCESS', 'FAILURE', 'NOT-PROVIDED' and 'NOT-VALIDATED'",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "pingStatus": {
+          "description": "Ping status for the IP during the job run. Available values are 'SUCCESS', 'FAILURE', 'NOT-PROVIDED' and 'NOT-VALIDATED'",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "snmpStatus": {
+          "description": "SNMP status for the IP during the job run. Available values are 'SUCCESS', 'FAILURE', 'NOT-PROVIDED' and 'NOT-VALIDATED'",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sortBy": {
+          "description": "Sort by field. Available values are pingStatus, cliStatus,snmpStatus, httpStatus and netconfStatus",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "Order of sorting based on sortBy. Available values are 'asc' and 'des'",
+          "type": "string"
+        },
+        "taskId": {
+          "description": "taskId",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "responses": {
+      "description": "",
+      "properties": {
+        "response": {
+          "description": "The number of network devices from the discovery job based on the given filters",
+          "type": "integer"
+        },
+        "version": {
+          "description": "",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "function"
+}

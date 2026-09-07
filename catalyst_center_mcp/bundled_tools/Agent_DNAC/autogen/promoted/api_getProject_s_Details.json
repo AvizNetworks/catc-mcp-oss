@@ -1,0 +1,104 @@
+{
+  "function": {
+    "_meta": {
+      "agents": [
+        "catalyst_network_engineer_agent"
+      ]
+    },
+    "additionalMetadata": {
+      "method": "GET",
+      "parameterLocation": {
+        "id": "query",
+        "limit": "query",
+        "name": "query",
+        "offset": "query",
+        "sortOrder": "query"
+      },
+      "uri": "/dna/intent/api/v2/template-programmer/project",
+      "version": "2.3.7.9"
+    },
+    "description": "Get project(s) details",
+    "name": "api_getProject_s_Details",
+    "parameters": {
+      "properties": {
+        "id": {
+          "description": "Id of project to be searched",
+          "type": "string"
+        },
+        "limit": {
+          "description": "Maximum number of records to be fetched. If not provided, 500 records will be fetched by default",
+          "maximum": 500,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "name": {
+          "description": "Name of project to be searched",
+          "type": "string"
+        },
+        "offset": {
+          "description": "The first record to show for this page. Minimum value is 1",
+          "minimum": 1,
+          "type": "integer"
+        },
+        "sortOrder": {
+          "description": "Sort Order Ascending (asc) or Descending (dsc)",
+          "type": "string"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "responses": {
+      "description": "",
+      "properties": {
+        "createTime": {
+          "description": "Create time of project",
+          "type": "integer"
+        },
+        "description": {
+          "description": "Description of project",
+          "type": "string"
+        },
+        "id": {
+          "description": "UUID of project",
+          "type": "string"
+        },
+        "isDeletable": {
+          "description": "Flag to check if project is deletable or not(for internal use only)",
+          "type": "boolean"
+        },
+        "lastUpdateTime": {
+          "description": "Update time of project",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Name of project",
+          "type": "string"
+        },
+        "tags": {
+          "description": "Tag object which needs to be applied on the project",
+          "items": {
+            "properties": {
+              "id": {
+                "description": "UUID of tag",
+                "type": "string"
+              },
+              "name": {
+                "description": "Name of tag",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "templates": {
+          "description": "List of templates within the project",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "function"
+}

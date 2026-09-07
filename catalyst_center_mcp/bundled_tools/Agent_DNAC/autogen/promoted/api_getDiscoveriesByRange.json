@@ -1,0 +1,299 @@
+{
+  "function": {
+    "_meta": {
+      "agents": [
+        "catalyst_network_engineer_agent"
+      ],
+      "max_controller_version": "3.1.3",
+      "min_controller_version": "2.3.7.9"
+    },
+    "additionalMetadata": {
+      "method": "GET",
+      "parameterLocation": {
+        "recordsToReturn": "path",
+        "startIndex": "path"
+      },
+      "uri": "/dna/intent/api/v1/discovery/{startIndex}/{recordsToReturn}",
+      "version": "2.3.7.9"
+    },
+    "description": "Returns the discoveries by specified range",
+    "name": "api_getDiscoveriesByRange",
+    "parameters": {
+      "properties": {
+        "recordsToReturn": {
+          "description": "Number of records to fetch from the starting index",
+          "type": "integer"
+        },
+        "startIndex": {
+          "description": "Starting index for the records",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "startIndex",
+        "recordsToReturn"
+      ],
+      "type": "object"
+    },
+    "responses": {
+      "description": "",
+      "properties": {
+        "response": {
+          "description": "",
+          "items": {
+            "properties": {
+              "attributeInfo": {
+                "description": "Deprecated",
+                "properties": {},
+                "type": "object"
+              },
+              "cdpLevel": {
+                "description": "CDP level to which neighbor devices to be discovered",
+                "type": "integer"
+              },
+              "deviceIds": {
+                "description": "Ids of the devices discovered in a discovery",
+                "type": "string"
+              },
+              "discoveryCondition": {
+                "description": "To indicate the discovery status. Available options: Complete or In Progress",
+                "type": "string"
+              },
+              "discoveryStatus": {
+                "description": "Status of the discovery. Available options are: Active, Inactive, Edit",
+                "type": "string"
+              },
+              "discoveryType": {
+                "description": "Type of the discovery. 'Single', 'Range', 'CDP', 'LLDP', 'CIDR'",
+                "type": "string"
+              },
+              "enablePasswordList": {
+                "description": "Enable Password of the devices to be discovered",
+                "type": "string"
+              },
+              "globalCredentialIdList": {
+                "description": "List of global credential ids to be used",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "httpReadCredential": {
+                "description": "HTTP Read Credential of the devices to be discovered",
+                "properties": {
+                  "comments": {
+                    "description": "Comments to identify the credential",
+                    "type": "string"
+                  },
+                  "credentialType": {
+                    "description": "Credential type to identify the application that uses the credential",
+                    "enum": [
+                      "GLOBAL",
+                      "APP"
+                    ],
+                    "type": "string"
+                  },
+                  "description": {
+                    "description": "Description of the credential",
+                    "type": "string"
+                  },
+                  "id": {
+                    "description": "Credential Id",
+                    "type": "string"
+                  },
+                  "instanceTenantId": {
+                    "description": "Credential Tenant Id",
+                    "type": "string"
+                  },
+                  "instanceUuid": {
+                    "description": "Credential Id",
+                    "type": "string"
+                  },
+                  "password": {
+                    "description": "HTTP(S) password",
+                    "type": "string"
+                  },
+                  "port": {
+                    "description": "HTTP(S) port",
+                    "type": "integer"
+                  },
+                  "secure": {
+                    "description": "Flag for HTTPS",
+                    "type": "boolean"
+                  },
+                  "username": {
+                    "description": "HTTP(S) username",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "httpWriteCredential": {
+                "description": "HTTP Write Credential of the devices to be discovered",
+                "properties": {
+                  "comments": {
+                    "description": "Comments to identify the credential",
+                    "type": "string"
+                  },
+                  "credentialType": {
+                    "description": "Credential type to identify the application that uses the credential",
+                    "enum": [
+                      "GLOBAL",
+                      "APP"
+                    ],
+                    "type": "string"
+                  },
+                  "description": {
+                    "description": "Description of the credential",
+                    "type": "string"
+                  },
+                  "id": {
+                    "description": "Credential Id",
+                    "type": "string"
+                  },
+                  "instanceTenantId": {
+                    "description": "Credential Tenant Id",
+                    "type": "string"
+                  },
+                  "instanceUuid": {
+                    "description": "Credential Id",
+                    "type": "string"
+                  },
+                  "password": {
+                    "description": "HTTP(S) password",
+                    "type": "string"
+                  },
+                  "port": {
+                    "description": "HTTP(S) port",
+                    "type": "integer"
+                  },
+                  "secure": {
+                    "description": "Flag for HTTPS",
+                    "type": "boolean"
+                  },
+                  "username": {
+                    "description": "HTTP(S) username",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "id": {
+                "description": "Unique Discovery Id",
+                "type": "string"
+              },
+              "ipAddressList": {
+                "description": "List of IP address of the devices to be discovered",
+                "type": "string"
+              },
+              "ipFilterList": {
+                "description": "IP addresses of the devices to be filtered",
+                "type": "string"
+              },
+              "isAutoCdp": {
+                "description": "Flag to mention if CDP discovery or not",
+                "type": "boolean"
+              },
+              "lldpLevel": {
+                "description": "LLDP level to which neighbor devices to be discovered",
+                "type": "integer"
+              },
+              "name": {
+                "description": "Name for the discovery",
+                "type": "string"
+              },
+              "netconfPort": {
+                "description": "Netconf port on the device. Netconf will need valid sshv2 credentials for it to work",
+                "type": "string"
+              },
+              "numDevices": {
+                "description": "Number of devices discovered in the discovery",
+                "type": "integer"
+              },
+              "parentDiscoveryId": {
+                "description": "Parent Discovery Id from which the discovery was initiated",
+                "type": "string"
+              },
+              "passwordList": {
+                "description": "Password of the devices to be discovered",
+                "type": "string"
+              },
+              "preferredMgmtIPMethod": {
+                "description": "Preferred management IP method. Available options are 'None' and 'UseLoopBack'",
+                "type": "string"
+              },
+              "protocolOrder": {
+                "description": "Order of protocol (ssh/telnet) in which device connection will be tried. Ex: 'telnet': only telnet; 'ssh,telnet': ssh with higher order than telnet",
+                "type": "string"
+              },
+              "retryCount": {
+                "description": "Number of times to try establishing connection to device",
+                "type": "integer"
+              },
+              "snmpAuthPassphrase": {
+                "description": "Auth passphrase for SNMP",
+                "type": "string"
+              },
+              "snmpAuthProtocol": {
+                "description": "SNMP auth protocol. SHA' or 'MD5'",
+                "type": "string"
+              },
+              "snmpMode": {
+                "description": "Mode of SNMP. 'AUTHPRIV' or 'AUTHNOPRIV' or 'NOAUTHNOPRIV'",
+                "type": "string"
+              },
+              "snmpPrivPassphrase": {
+                "description": "Passphrase for SNMP privacy",
+                "type": "string"
+              },
+              "snmpPrivProtocol": {
+                "description": "SNMP privacy protocol. 'AES128'",
+                "type": "string"
+              },
+              "snmpRoCommunity": {
+                "description": "SNMP RO community of the devices to be discovered",
+                "type": "string"
+              },
+              "snmpRoCommunityDesc": {
+                "description": "Description for SNMP RO community",
+                "type": "string"
+              },
+              "snmpRwCommunity": {
+                "description": "SNMP RW community of the devices to be discovered",
+                "type": "string"
+              },
+              "snmpRwCommunityDesc": {
+                "description": "Description for SNMP RW community",
+                "type": "string"
+              },
+              "snmpUserName": {
+                "description": "SNMP username of the device",
+                "type": "string"
+              },
+              "timeOut": {
+                "description": "Time to wait for device response.",
+                "type": "integer"
+              },
+              "updateMgmtIp": {
+                "description": "Updates Management IP if multiple IPs are available for a device. If set to true, when a device is rediscovered with a different IP, the management IP is updated. Default value is false",
+                "type": "boolean"
+              },
+              "userNameList": {
+                "description": "Username of the devices to be discovered",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "version": {
+          "description": "",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "function"
+}
